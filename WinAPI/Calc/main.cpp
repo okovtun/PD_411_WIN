@@ -3,32 +3,7 @@
 #include<stdio.h>
 #include<iostream>
 #include"resource.h"
-
-#define delimiter "\n-------------------------------------------\n"
-CONST CHAR g_sz_CLASS_NAME[] = "MyCalc";
-
-CONST CHAR* g_sz_OPERATIONS[] = { "+", "-", "*", "/" };
-CONST CHAR* g_sz_EDIT[] = { "<-", "C", "=" };
-CONST CHAR* g_sz_BUTTON_FILENAMES[] = { "point","plus","minus","aster","slash","bsp","clr", "equal" };
-
-//g_i_ - Global Integer
-CONST INT g_i_BUTTON_SIZE = 50;
-CONST INT g_i_INTERVAL = 1;
-CONST INT g_i_BUTTON_SPACE = g_i_BUTTON_SIZE + g_i_INTERVAL;
-//CONST INT g_i_BUTTON_SPACE_DOUBLE = (g_i_BUTTON_SIZE + g_i_INTERVAL) * 2;
-
-CONST INT g_i_BUTTON_SIZE_DOUBLE = g_i_BUTTON_SIZE * 2 + g_i_INTERVAL;
-CONST INT g_i_START_X = 10;
-CONST INT g_i_START_Y = 10;
-CONST INT g_i_DISPLAY_HEIGHT = 48;
-CONST INT g_i_DISPLAY_WIDTH = g_i_BUTTON_SIZE * 5 + g_i_INTERVAL * 4;
-CONST INT g_i_BUTTON_START_X = g_i_START_X;
-CONST INT g_i_BUTTON_START_Y = g_i_START_Y + g_i_DISPLAY_HEIGHT + g_i_INTERVAL;
-
-CONST INT g_i_WINDOW_WIDTH = g_i_DISPLAY_WIDTH + 2 * g_i_START_X + 16;
-CONST INT g_i_WINDOW_HEIGHT = (g_i_DISPLAY_HEIGHT + g_i_INTERVAL) + g_i_BUTTON_SPACE * 4 + 2 * g_i_START_Y + 24 + 16;
-
-CONST INT g_SIZE = 256;
+#include"Constants.h"
 
 INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 VOID SetSkin(HWND hwnd, CONST CHAR sz_skin[]);
@@ -96,6 +71,8 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	static INT operation = 0;
 	static BOOL input = FALSE;				//Пользователь ввел число
 	static BOOL input_operation = FALSE;	//Пользователь ввел знак операции
+
+	static INT index = 0;
 
 	switch (uMsg)
 	{
@@ -217,9 +194,23 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		//SendMessage(GetDlgItem(hwnd, IDC_BUTTON_0), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)hIcon);
 
 		//SetSkin(hwnd, "metal_mistral");
-		SetSkinFromDLL(hwnd, "metal_mistral");
+		SetSkinFromDLL(hwnd, "square_blue");
 
 
+	}
+	break;
+
+	case WM_CTLCOLOREDIT:
+	{
+		HDC hdcEdit = (HDC)wParam;	//HDC - Handler to Device Context
+		SetBkColor(hdcEdit, g_DISPLAY_BACKGROUND[index]);
+		SetTextColor(hdcEdit, g_DISPLAY_FOREGROUND[index]);
+
+		HBRUSH hbrBackground = CreateSolidBrush(g_WINDOW_BACKGROUND[index]);
+		SetClassLongPtr(hwnd, GCLP_HBRBACKGROUND, (LONG)hbrBackground);
+		SendMessage(hwnd, WM_ERASEBKGND, wParam, 0);
+		RedrawWindow(hwnd, NULL, NULL, RDW_ERASE);
+		return (LRESULT)hbrBackground;
 	}
 	break;
 	case WM_COMMAND:
@@ -290,7 +281,8 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			sprintf(szDisplay, "%g", a);
 			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)szDisplay);
 		}
-
+		//if (LOWORD(wParam) == IDC_EDIT_DISPLAY && HIWORD(wParam) == EN_SETFOCUS)
+		SetFocus(hwnd);
 	}
 	break;
 
@@ -407,9 +399,30 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 		switch (item)
 		{
+		case CM_EXIT:			SendMessage(hwnd, WM_DESTROY, 0, 0);	break;
 		case CM_SQUARE_BLUE:	SetSkinFromDLL(hwnd, "square_blue");	break;
 		case CM_METAL_MISTRAL:	SetSkinFromDLL(hwnd, "metal_mistral");	break;
 		}
+		DestroyMenu(hMainMenu);
+
+		if (item >= 201 && item <= 210)
+		{
+			index = item - CM_SQUARE_BLUE;
+			//SetSkin(hwnd, g_sz_SKIN[index]);
+
+			HWND hEditDisplay = GetDlgItem(hwnd, IDC_EDIT_DISPLAY);
+			HDC hdcEditDisplay = GetDC(hEditDisplay);
+			SendMessage(hwnd, WM_CTLCOLOREDIT, (WPARAM)hdcEditDisplay, 0);
+			ReleaseDC(hEditDisplay, hdcEditDisplay);	//Контекст устройства обяхательно нужно освобождать
+
+			CHAR sz_buffer[g_SIZE] = {};
+			SendMessage(hwnd, WM_GETTEXT, g_SIZE, (LPARAM)sz_buffer);
+			SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)"");
+			SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)sz_buffer);
+			SetFocus(hEditDisplay);
+			SetSkinFromDLL(hwnd, g_sz_SKIN[index]);
+		}
+
 	}
 	break;
 

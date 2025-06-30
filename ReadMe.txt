@@ -7,15 +7,19 @@ Messages:
 https://learn.microsoft.com/en-us/windows/win32/winmsg/windowing
 
 TODO:
-Добить кнопки;
+1. Упаковать несколько шрифтов в DLL, и использовать шрифты из DLL-файла;
+2. Сделать подменю для тем и для шрифтов;
 
-TODO:
-1. Сделать свои кнопки;
-2. Добавить проект 'LastError', и в этом проекте собрать 
+DONE:
+1. Сделать свои кнопки;	DONE
+2. Добавить проект 'LastError', и в этом проекте собрать DONE
    статическую или динамическую библиотеку с функциями FormatLastError() и PrintLastError();
 	https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-static-library-cpp?view=msvc-170
 	https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=msvc-170
-3. Добавить свой шрифт из файла;
+3. Добавить свой шрифт из файла;DONE
+
+DONE:
+Добить кнопки;
 
 DONE:
 1. Прикрутить значки к кнопкам;
