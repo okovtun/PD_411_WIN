@@ -203,8 +203,9 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CTLCOLOREDIT:
 	{
 		HDC hdcEdit = (HDC)wParam;	//HDC - Handler to Device Context
-		SetBkColor(hdcEdit, g_DISPLAY_BACKGROUND[index]);
+		SetBkMode(hdcEdit, OPAQUE);
 		SetTextColor(hdcEdit, g_DISPLAY_FOREGROUND[index]);
+		SetBkColor(hdcEdit, g_DISPLAY_BACKGROUND[index]);
 
 		HBRUSH hbrBackground = CreateSolidBrush(g_WINDOW_BACKGROUND[index]);
 		SetClassLongPtr(hwnd, GCLP_HBRBACKGROUND, (LONG)hbrBackground);
@@ -396,6 +397,11 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_STRING, CM_METAL_MISTRAL, "Metal Mistral");
 
 		BOOL item = TrackPopupMenuEx(hMainMenu, TPM_RETURNCMD | TPM_RIGHTALIGN | TPM_BOTTOMALIGN, LOWORD(lParam), HIWORD(lParam), hwnd, NULL);
+		//TPM_RETURNCMD - возвращает ID_-ресурса выбранного элемента:
+			//CM_EXIT						200
+			//CM_SQUARE_BLUE				201
+			//CM_METAL_MISTRAL				202
+		//BOOL
 
 		switch (item)
 		{
@@ -409,6 +415,7 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 			index = item - CM_SQUARE_BLUE;
 			//SetSkin(hwnd, g_sz_SKIN[index]);
+			SetSkinFromDLL(hwnd, g_sz_SKIN[index]);
 
 			HWND hEditDisplay = GetDlgItem(hwnd, IDC_EDIT_DISPLAY);
 			HDC hdcEditDisplay = GetDC(hEditDisplay);
@@ -416,11 +423,10 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			ReleaseDC(hEditDisplay, hdcEditDisplay);	//Контекст устройства обяхательно нужно освобождать
 
 			CHAR sz_buffer[g_SIZE] = {};
-			SendMessage(hwnd, WM_GETTEXT, g_SIZE, (LPARAM)sz_buffer);
-			SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)"");
-			SendMessage(hwnd, WM_SETTEXT, 0, (LPARAM)sz_buffer);
-			SetFocus(hEditDisplay);
-			SetSkinFromDLL(hwnd, g_sz_SKIN[index]);
+			//sprintf(sz_buffer, "%i", item);;;;;;;;;;;;;;;
+			SendMessage(hEditDisplay, WM_GETTEXT, g_SIZE, (LPARAM)sz_buffer);
+			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_buffer);
+			//SetFocus(hEditDisplay);
 		}
 
 	}

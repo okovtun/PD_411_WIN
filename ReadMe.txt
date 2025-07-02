@@ -6,6 +6,9 @@ https://learn.microsoft.com/ru-ru/cpp/c-runtime-library/reference/mbstowcs-mbsto
 Messages:
 https://learn.microsoft.com/en-us/windows/win32/winmsg/windowing
 
+IEEE-754:
+http://www.softelectro.ru/ieee754.html
+
 TODO:
 1. Упаковать несколько шрифтов в DLL, и использовать шрифты из DLL-файла;
 2. Сделать подменю для тем и для шрифтов;
