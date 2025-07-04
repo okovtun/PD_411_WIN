@@ -406,8 +406,8 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_STRING, CM_SQUARE_BLUE, "Square Blue");
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_STRING, CM_METAL_MISTRAL, "Metal Mistral");
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
-		for (INT i = 0; i <= 4; i++)
-			InsertMenu(hMainMenu, i, MF_BYPOSITION | MF_STRING, i + 300, g_sz_FONT[i]);
+		for (INT i = 0; i < 4; i++)
+			InsertMenu(hMainMenu, i, MF_BYPOSITION | MF_STRING, i + 301, g_sz_FONT[i]);
 		BOOL item = TrackPopupMenuEx(hMainMenu, TPM_RETURNCMD | TPM_RIGHTALIGN | TPM_BOTTOMALIGN, LOWORD(lParam), HIWORD(lParam), hwnd, NULL);
 		//TPM_RETURNCMD - возвращает ID_-ресурса выбранного элемента:
 			//CM_EXIT						200
@@ -445,7 +445,7 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		if (item >= 301 && item <= 304)
 		{
-			font_index = item - 300;
+			font_index = item - 300 - 1;
 			SetFont(hwnd, g_sz_FONT[font_index]);
 		}
 
