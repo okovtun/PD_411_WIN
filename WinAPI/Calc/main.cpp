@@ -77,6 +77,7 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 	static INT index = 0;
 	static INT font_index = 0;
+	static BOOL window_color_changed = TRUE;
 
 	switch (uMsg)
 	{
@@ -212,11 +213,15 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		SetTextColor(hdcEdit, g_DISPLAY_FOREGROUND[index]);
 		SetBkColor(hdcEdit, g_DISPLAY_BACKGROUND[index]);
 
-		HBRUSH hbrBackground = CreateSolidBrush(g_WINDOW_BACKGROUND[index]);
-		SetClassLongPtr(hwnd, GCLP_HBRBACKGROUND, (LONG)hbrBackground);
-		SendMessage(hwnd, WM_ERASEBKGND, wParam, 0);
-		RedrawWindow(hwnd, NULL, NULL, RDW_ERASE);
-		return (LRESULT)hbrBackground;
+		if (window_color_changed)
+		{
+			window_color_changed = FALSE;
+			HBRUSH hbrBackground = CreateSolidBrush(g_WINDOW_BACKGROUND[index]);
+			SetClassLongPtr(hwnd, GCLP_HBRBACKGROUND, (LONG)hbrBackground);
+			SendMessage(hwnd, WM_ERASEBKGND, wParam, 0);
+			RedrawWindow(hwnd, NULL, NULL, RDW_ERASE);
+			return (LRESULT)hbrBackground;
+		}
 	}
 	break;
 	case WM_COMMAND:
@@ -400,7 +405,9 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_STRING, CM_SQUARE_BLUE, "Square Blue");
 		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_STRING, CM_METAL_MISTRAL, "Metal Mistral");
-
+		InsertMenu(hMainMenu, 0, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
+		for (INT i = 0; i <= 4; i++)
+			InsertMenu(hMainMenu, i, MF_BYPOSITION | MF_STRING, i + 300, g_sz_FONT[i]);
 		BOOL item = TrackPopupMenuEx(hMainMenu, TPM_RETURNCMD | TPM_RIGHTALIGN | TPM_BOTTOMALIGN, LOWORD(lParam), HIWORD(lParam), hwnd, NULL);
 		//TPM_RETURNCMD - возвращает ID_-ресурса выбранного элемента:
 			//CM_EXIT						200
@@ -424,6 +431,9 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 			HWND hEditDisplay = GetDlgItem(hwnd, IDC_EDIT_DISPLAY);
 			HDC hdcEditDisplay = GetDC(hEditDisplay);
+			/////////////////////////////////////////////////////////////////////////////
+			window_color_changed = TRUE;
+			/////////////////////////////////////////////////////////////////////////////
 			SendMessage(hwnd, WM_CTLCOLOREDIT, (WPARAM)hdcEditDisplay, 0);
 			ReleaseDC(hEditDisplay, hdcEditDisplay);	//Контекст устройства обяхательно нужно освобождать
 
@@ -432,6 +442,11 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			SendMessage(hEditDisplay, WM_GETTEXT, g_SIZE, (LPARAM)sz_buffer);
 			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_buffer);
 			//SetFocus(hEditDisplay);
+		}
+		if (item >= 301 && item <= 304)
+		{
+			font_index = item - 300;
+			SetFont(hwnd, g_sz_FONT[font_index]);
 		}
 
 	}
