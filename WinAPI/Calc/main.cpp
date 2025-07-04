@@ -1,4 +1,5 @@
-﻿#include<Windows.h>
+﻿//#define DEBUG
+#include<Windows.h>
 #include<float.h>
 #include<stdio.h>
 #include<iostream>
@@ -83,9 +84,12 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 	{
+#ifdef DEBUG
 		AllocConsole();
 		freopen("CONOUT$", "w", stdout);
 		system("CHCP 1251");
+#endif // DEBUG
+
 		HWND hEditDisplay = CreateWindowEx
 		(
 			NULL, "Edit", "0",

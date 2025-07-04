@@ -9,7 +9,17 @@ https://learn.microsoft.com/en-us/windows/win32/winmsg/windowing
 IEEE-754:
 http://www.softelectro.ru/ieee754.html
 
+InstallerProjects:
+https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net-core?view=vs-2022
+2017:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects
+2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
+
 TODO:
+1. Разобрать 'SetupWizard';
+2. Попробовать другие установщики прилоений;
+3. Реализовать текстовые редактор по типу Блокнота (notepad);
+
+DONE:
 1. Упаковать несколько шрифтов в DLL, и использовать шрифты из DLL-файла;
 2. Сделать подменю для тем и для шрифтов;
 

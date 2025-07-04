@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Buttons", "Buttons\Buttons.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Fonts-onlyDLL", "Fonts-onlyDLL\Fonts-onlyDLL.vcxproj", "{82561E2A-459B-4133-B649-D7883EACF7DD}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CalcSetup", "CalcSetup\CalcSetup.vdproj", "{E4ADFFD3-BECA-4A35-B0B2-4290141E1EEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,10 @@ Global
 		{82561E2A-459B-4133-B649-D7883EACF7DD}.Release|x64.Build.0 = Release|x64
 		{82561E2A-459B-4133-B649-D7883EACF7DD}.Release|x86.ActiveCfg = Release|Win32
 		{82561E2A-459B-4133-B649-D7883EACF7DD}.Release|x86.Build.0 = Release|Win32
+		{E4ADFFD3-BECA-4A35-B0B2-4290141E1EEA}.Debug|x64.ActiveCfg = Debug
+		{E4ADFFD3-BECA-4A35-B0B2-4290141E1EEA}.Debug|x86.ActiveCfg = Debug
+		{E4ADFFD3-BECA-4A35-B0B2-4290141E1EEA}.Release|x64.ActiveCfg = Release
+		{E4ADFFD3-BECA-4A35-B0B2-4290141E1EEA}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
