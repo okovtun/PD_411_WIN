@@ -86,12 +86,15 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE pRevInst, LPSTR lpCmdLine, INT
 
 	//3) Запуск цикла сообщений:
 	MSG msg;
+	//08;
 	while (GetMessage(&msg, NULL, 0, 0) > 0)
 	{
+		//Quit - Выход
+		//Queue - Очередь
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-
+	HWND_TOPMOST;
 	return msg.wParam;
 }
 
@@ -102,6 +105,7 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		//A - ANSI ASCII
 		//W - Wide encoding (Unicode - w_char_t)
+#ifdef CHILDREN
 		CreateWindowEx
 		(
 			NULL,
@@ -139,6 +143,8 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			GetModuleHandle(NULL),
 			NULL
 		);
+#endif // CHILDREN
+
 		break;
 	case WM_MOVE:
 	case WM_SIZE:
@@ -180,7 +186,8 @@ INT WINAPI WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		PostQuitMessage(0);
 		break;
 	case WM_CLOSE:
-		DestroyWindow(hwnd);
+		if (MessageBox(hwnd, "Вы действительно хотите закрыть окно", "Question", MB_YESNO | MB_ICONQUESTION) == IDYES)
+			DestroyWindow(hwnd);
 		break;
 	default:
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);

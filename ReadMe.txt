@@ -5,6 +5,10 @@ https://learn.microsoft.com/ru-ru/cpp/c-runtime-library/reference/mbstowcs-mbsto
 
 Messages:
 https://learn.microsoft.com/en-us/windows/win32/winmsg/windowing
+https://learn.microsoft.com/en-us/cpp/mfc/modal-and-modeless-dialog-boxes?view=msvc-170
+
+TOREAD:
+https://learn.microsoft.com/en-us/windows/win32/winmsg/about-messages-and-message-queues#sending-messages
 
 IEEE-754:
 http://www.softelectro.ru/ieee754.html
