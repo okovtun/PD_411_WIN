@@ -19,6 +19,13 @@ https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net
 2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
 
 TODO:
+1. Сделать COMMIT и создать ветку 'WindowsForms_HW1';
+2. Добавить на форму галочку (CheckBox) 'Показать дату'.
+   Если она установлена, то под временем должна отображаться дата;
+3. Добавить галочку 'Показать день недели', и если она установлена,
+   то под датой/временем должен отображаться день недели;
+
+DONE:
 1. Разобрать 'SetupWizard';
 2. Попробовать другие установщики прилоений;
 3. Реализовать текстовые редактор по типу Блокнота (notepad);
