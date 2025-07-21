@@ -19,6 +19,11 @@ https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net
 2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
 
 TODO:
+1. Часы должны всегда запускаться в правом верхнем углу, независимо от размера экрана;
+2. Обеспечить возможность выбора кастомного шрифта для часов;
+3. Обеспечить возможность выбирать цвет текста и фона для часов;
+
+DONE:
 1. Сделать COMMIT и создать ветку 'WindowsForms_HW1';
 2. Добавить на форму галочку (CheckBox) 'Показать дату'.
    Если она установлена, то под временем должна отображаться дата;
