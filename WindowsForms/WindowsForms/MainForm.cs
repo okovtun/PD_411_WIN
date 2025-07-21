@@ -20,6 +20,15 @@ namespace WindowsForms
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			labelCurrentTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
+			if (cbShowDate.Checked)
+				labelCurrentTime.Text += $"\n{DateTime.Now.ToString("yyyy.MM.dd")}";
+			if (cbShowWeekDay.Checked)
+				labelCurrentTime.Text += $"\n{DateTime.Now.DayOfWeek}";
+		}
+
+		private void btnHideControls_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
