@@ -14,14 +14,18 @@ namespace WindowsForms
 {
 	public partial class MainForm : Form
 	{
+		ChooseFont chooseFont;
 		ColorDialog cdBackColor;
 		ColorDialog cdForeColor;
 		public MainForm()
 		{
 			InitializeComponent();
 			ShowControls(cmShowControls.Checked);
+			ShowConsole(cmDebugConsole.Checked = true);
+			chooseFont = new ChooseFont();
 			cdBackColor = new ColorDialog();
 			cdForeColor = new ColorDialog();
+
 		}
 		void ShowControls(bool visible)
 		{
@@ -51,8 +55,7 @@ namespace WindowsForms
 			if (cbShowWeekDay.Checked)
 				labelCurrentTime.Text += $"\n{DateTime.Now.DayOfWeek}";
 			notifyIcon.Text = labelCurrentTime.Text;
-			if (cmDebugConsole.Checked)
-				Console.WriteLine(notifyIcon.Text);
+			//if (cmDebugConsole.Checked)	Console.WriteLine(notifyIcon.Text);
 		}
 
 		private void btnHideControls_Click(object sender, EventArgs e)
@@ -119,6 +122,12 @@ namespace WindowsForms
 		{
 			cdForeColor.ShowDialog();
 			labelCurrentTime.ForeColor = cdForeColor.Color;
+		}
+
+		private void cmFont_Click(object sender, EventArgs e)
+		{
+			chooseFont.ShowDialog();
+			labelCurrentTime.Font = chooseFont.Font;
 		}
 	}
 }
