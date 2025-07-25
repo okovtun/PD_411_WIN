@@ -25,7 +25,17 @@ namespace WindowsForms
 			chooseFont = new ChooseFont();
 			cdBackColor = new ColorDialog();
 			cdForeColor = new ColorDialog();
-
+			this.Location = new Point
+				(
+					Screen.PrimaryScreen.Bounds.Width - this.Width,
+					100
+				);
+			chooseFont.StartPosition = FormStartPosition.Manual;
+			chooseFont.Location = new Point
+				(
+					this.Location.X - chooseFont.Width,
+					100
+				);
 		}
 		void ShowControls(bool visible)
 		{
@@ -126,6 +136,11 @@ namespace WindowsForms
 
 		private void cmFont_Click(object sender, EventArgs e)
 		{
+			chooseFont.Location = new Point
+				(
+					this.Location.X - chooseFont.Width,
+					this.Location.Y
+				);
 			chooseFont.ShowDialog();
 			labelCurrentTime.Font = chooseFont.Font;
 		}
