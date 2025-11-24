@@ -19,6 +19,10 @@ https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net
 2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
 
 TODO:
+1. Добавить значок в главное окно WPF-приложения;
+2. Аналогичное окно с сетко сделать при помощи свойств;
+
+TODO:
 1. Добавить контекстное меню пункт 'Alarms', при нажатии на который откроется окно с будильниками.
 	Будильников можно добавлять сколько угодно, как на заданное время, так и на заданную дату.
 	При достижении заданных даты/времени, будтльник должен воспроизводить звуковой сигнал,
