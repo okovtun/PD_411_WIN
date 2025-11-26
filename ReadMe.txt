@@ -19,6 +19,9 @@ https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net
 2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
 
 TODO:
+1. При нажатии Enter после ввода информации курсор должен переходить в сдедующее поле для ввода;
+
+DONE:
 1. Добавить значок в главное окно WPF-приложения;
 2. Аналогичное окно с сетко сделать при помощи свойств;
 
