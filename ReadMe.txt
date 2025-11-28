@@ -19,6 +19,11 @@ https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net
 2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
 
 TODO:
+1. Использовать IPaddressControl в приложении WPF:
+	https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/wpf-and-win32-interoperation
+2. Написать тектовый редактор;
+
+DONE:
 1. При нажатии Enter после ввода информации курсор должен переходить в сдедующее поле для ввода;
 
 DONE:
