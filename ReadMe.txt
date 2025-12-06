@@ -23,6 +23,14 @@ TODO:
 2. По мере воспроизвеления должен перемещаться ползунок 'horizontalSliderTime';
 3. https://t.me/+Zn12BooPxuEzYjBi
 
+TeamProject:
+1. Водопадная модель разработки;
+2. Спиральная модель разработки;
+3. Agile:	https://agilemanifesto.org/
+			https://www.atlassian.com/ru/agile
+4. Scrum:	https://scrumguides.org/index.html
+			https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf#zoom=100
+
 TODO:
 1. Использовать IPaddressControl в приложении WPF:
 	https://learn.microsoft.com/en-us/dotnet/desktop/wpf/advanced/wpf-and-win32-interoperation
