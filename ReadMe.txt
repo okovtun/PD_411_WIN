@@ -18,10 +18,23 @@ https://learn.microsoft.com/en-us/visualstudio/deployment/installer-projects-net
 2017:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2017InstallerProjects
 2022:	https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects
 
+Range-based for:
+	//https://legacy.cplusplus.com/doc/tutorial/control/#:~:text=equal%20to%2050.-,Range%2Dbased%20for%20loop,-The%20for%2Dloop
+	//https://www.youtube.com/watch?v=11Yqy4YLppw&list=PLeqyOOqxeiINwoETYVNufASRa3i53K2Gb&index=21
+
 TODO:
+1. В плейлисте при загрузке песенки должна отображаться ее продолжительность;
+2. Добавить в плейер кнопки 'Shuffle' и 'Repeat';
+3. Добавить кнопку 'DEL', которая удаляет песенку из плейлиста;
+4. Добавить кнопку 'CLR', которая очищает плейлист;
+5. Добавить кнопку 'DIR', которая добавляет все аудиофайлы из укащанной папки;
+6. При закрытии плейера плейлист должен сохраняться, а и запуске восстанавливаться;
+
+DONE:
 1. Реализвать регулировку громкости;
 2. По мере воспроизвеления должен перемещаться ползунок 'horizontalSliderTime';
 3. https://t.me/+Zn12BooPxuEzYjBi
+4. https://eu.hitmo-top.com/song/71414741
 
 TeamProject:
 1. Водопадная модель разработки;
